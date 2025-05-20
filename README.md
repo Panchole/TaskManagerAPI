@@ -27,10 +27,34 @@ This project follows Clean Architecture principles with the following layers:
 ### Prerequisites
 
 -   .NET 9 SDK
--   Docker (for SQL Server)
+-   SQL Server (local instance) OR Docker
 -   Visual Studio Code or Visual Studio 2022
 
 ### Getting Started
+
+#### Option 1: Using Local SQL Server (Default)
+
+1. Clone the repository
+
+    ```
+    git clone https://github.com/YOUR_USERNAME/TaskManagerAPI.git
+    cd TaskManagerAPI
+    ```
+
+2. Ensure your local SQL Server instance is running
+
+3. Run the migrations
+
+    ```
+    dotnet ef database update --project src/TaskManagerAPI.Infrastructure --startup-project src/TaskManagerAPI.Api
+    ```
+
+4. Run the application
+    ```
+    dotnet run --project src/TaskManagerAPI.Api
+    ```
+
+#### Option 2: Using Docker for SQL Server
 
 1. Clone the repository
 
@@ -45,19 +69,27 @@ This project follows Clean Architecture principles with the following layers:
     docker-compose up -d
     ```
 
-3. Run the migrations
+3. Update the configuration to use Docker
+
+    - Open `src/TaskManagerAPI.Api/appsettings.json`
+    - Change `"UseDockerDatabase": false` to `"UseDockerDatabase": true`
+
+4. Run the migrations
 
     ```
     dotnet ef database update --project src/TaskManagerAPI.Infrastructure --startup-project src/TaskManagerAPI.Api
     ```
 
-4. Run the application
+5. Run the application
 
     ```
     dotnet run --project src/TaskManagerAPI.Api
     ```
 
-5. Access the API at `https://localhost:5001` or `http://localhost:5000`
+6. Access the API at `https://localhost:5001` or `http://localhost:5000`
+
+```
+
 
 ## 📝 API Documentation
 
@@ -70,7 +102,9 @@ Once the application is running, you can access the Swagger documentation at:
 Run the tests with:
 
 ```
+
 dotnet test
+
 ```
 
 ## 📦 Deployment
@@ -80,7 +114,9 @@ The application is configured for Native AOT compilation, which produces a self-
 To publish:
 
 ```
+
 dotnet publish src/TaskManagerAPI.Api -c Release
+
 ```
 
 ## 📄 License
@@ -90,4 +126,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ```
 
 Explicación: Este README proporciona una visión general del proyecto, las tecnologías utilizadas, la arquitectura, instrucciones de configuración y ejecución, y otra información relevante. Es completo pero conciso, y utiliza emojis y formato para mejorar la legibilidad.
+
+```
+
 ```

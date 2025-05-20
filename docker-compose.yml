@@ -7,7 +7,7 @@ services:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=Aspire96
     ports:
-      - "1433:1433"
+      - "14330:1433"  # Usando puerto diferente para no conflictuar con tu instancia local
     volumes:
       - sqlserver_data:/var/opt/mssql
     restart: unless-stopped
